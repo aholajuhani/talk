@@ -1582,7 +1582,7 @@ type ModeratorNote {
   """
   body is the content of the Note
   """
-  body: String
+  body: String!
 
   """
   createdAt is the date in which the Note was created.
@@ -1716,7 +1716,7 @@ type User {
   """
   moderatorNotes are notes left by moderators about the User.
   """
-  moderatorNotes: [ModeratorNote]
+  moderatorNotes: [ModeratorNote!]!
     @auth(
       roles: [ADMIN, MODERATOR]
     )
@@ -4351,6 +4351,7 @@ type CreateModeratorNotePayload {
   clientMutationId is required for Relay support.
   """
   clientMutationId: String!
+
   """
   id is the identifier of the note
   """
@@ -4365,8 +4366,9 @@ type CreateModeratorNotePayload {
   createdAt: Time!
   """
   createdBy is the moderator who created the note
+  user is the updated user.
   """
-  createdBy: User!
+  user: User!
 }
 
 type DeleteModeratorNotePayload {
@@ -4374,6 +4376,10 @@ type DeleteModeratorNotePayload {
   clientMutationId is required for Relay support.
   """
   clientMutationId: String!
+  """
+  user is the updated user.
+  """
+  user: User!
 }
 
 ##################
